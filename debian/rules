@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+
+include /usr/share/pkg-kde-tools/qt-kde-team/3/debian-qt-kde.mk
+
+GEONAME_DATA_FILES := cities1000.zip admin1CodesASCII.txt admin2Codes.txt
+GEONAME_DUMPS := $(addprefix debian/geonames/, $(GEONAME_DATA_FILES))
+GEONAME_SRCS := $(addprefix src/, $(GEONAME_DATA_FILES))
+
+dump/%:
+	mkdir -p dump
+	cd dump && wget -q http://download.geonames.org/export/dump/$*
+
+geonames_deploy: $(GEONAME_DUMPS)
+	ln -s $(GEONAME_DUMPS) src/
+
+geonames_undeploy: $(GEONAME_DUMPS)
+	rm -rf $(GEONAME_SRCS)
+
+override_dh_clean: geonames_undeploy
+	$(overridden_command)
+
+override_dh_auto_configure: geonames_deploy
+	$(overridden_command)
+
+override_dh_strip:
+	$(overridden_command) --dbg-package=koko-dbg
+
+.PHONY: geonames_deploy geonames_undeploy override_dh_clean override_dh_auto_configure override_dh_auto_test
