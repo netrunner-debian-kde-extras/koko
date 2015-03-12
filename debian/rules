@@ -11,7 +11,7 @@ debian/geonames/%:
 	cd debian/geonames/ && wget -q http://download.geonames.org/export/dump/$*
 
 geonames_deploy: $(GEONAME_DUMPS)
-	ln -s $(GEONAME_DUMPS) src/
+	cp -v $(GEONAME_DUMPS) src/
 
 geonames_undeploy: $(GEONAME_DUMPS)
 	rm -rf $(GEONAME_SRCS)
