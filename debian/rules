@@ -6,9 +6,9 @@ GEONAME_DATA_FILES := cities1000.zip admin1CodesASCII.txt admin2Codes.txt
 GEONAME_DUMPS := $(addprefix debian/geonames/, $(GEONAME_DATA_FILES))
 GEONAME_SRCS := $(addprefix src/, $(GEONAME_DATA_FILES))
 
-dump/%:
-	mkdir -p dump
-	cd dump && wget -q http://download.geonames.org/export/dump/$*
+debian/geonames/%:
+	mkdir -p debian/geonames/
+	cd debian/geonames/ && wget -q http://download.geonames.org/export/dump/$*
 
 geonames_deploy: $(GEONAME_DUMPS)
 	ln -s $(GEONAME_DUMPS) src/
