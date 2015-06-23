@@ -8,8 +8,10 @@ GEONAME_SRCS := $(addprefix src/, $(GEONAME_DATA_FILES))
 	dh $@ --with kf5 --parallel
 
 debian/geonames/%:
+	pushd
 	mkdir -p debian/geonames/
 	cd debian/geonames/ && wget -q http://download.geonames.org/export/dump/$*
+	popd
 
 geonames_deploy: $(GEONAME_DUMPS)
 	cp -v $(GEONAME_DUMPS) src/
