@@ -1,10 +1,11 @@
 #!/usr/bin/make -f
 
-include /usr/share/pkg-kde-tools/qt-kde-team/3/debian-qt-kde.mk
-
 GEONAME_DATA_FILES := cities1000.zip admin1CodesASCII.txt admin2Codes.txt
 GEONAME_DUMPS := $(addprefix debian/geonames/, $(GEONAME_DATA_FILES))
 GEONAME_SRCS := $(addprefix src/, $(GEONAME_DATA_FILES))
+
+%:
+	dh $@ --with kf5 --parallel
 
 debian/geonames/%:
 	mkdir -p debian/geonames/
