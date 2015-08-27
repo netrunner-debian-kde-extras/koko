@@ -24,7 +24,10 @@ Vcs-Git: git://anonscm.debian.org/pkg-kde/kde-extras/kdeconnect-plasma.git
 
 Package: koko
 Architecture: any
-Depends: plasma-framework, ${misc:Depends}, ${shlibs:Depends}
+Depends: plasma-framework,
+         qml-module-qtgraphicaleffects,
+         ${misc:Depends},
+         ${shlibs:Depends}
 Description: KDE Image Gallery
  A KDE Image Gallery.
 
