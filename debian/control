@@ -1,7 +1,8 @@
 Source: koko
 Section: kde
 Priority: optional
-Maintainer: Debian/Kubuntu KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Maintainer: Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+XSBC-Original-Maintainer: Debian/Kubuntu KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Build-Depends: baloo-kf5-dev,
                cmake (>= 2.6.2),
                debhelper (>= 9),
